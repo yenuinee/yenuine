@@ -2,6 +2,9 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
+<link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="apple-touch-icon" href="/favicon.png">
@@ -17,7 +20,7 @@
     <!-- Open Graph (WhatsApp, Facebook, LinkedIn) -->
     <meta property="og:title" content="Yenuine — Estudio Creativo">
     <meta property="og:description" content="Producción audiovisual, diseño gráfico, publicidad, videoclips y branding. Transformamos tu visión en contenido visual.">
-    <meta property="og:image" content="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777417614/negro_vbx1yu.png">
+    <meta property="og:image" content="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777417614/negro_vbx1yu.png">
     <meta property="og:url" content="https://yenuine.com">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Yenuine Entertainment">
@@ -27,7 +30,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Yenuine — Estudio Creativo">
     <meta name="twitter:description" content="Producción audiovisual, diseño gráfico, publicidad, videoclips y branding.">
-    <meta name="twitter:image" content="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777417614/negro_vbx1yu.png">
+    <meta name="twitter:image" content="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777417614/negro_vbx1yu.png">
 
     <!-- Schema: Organización -->
     <script type="application/ld+json">
@@ -37,7 +40,7 @@
       "name": "Yenuine Entertainment",
       "alternateName": "YENUINE",
       "url": "https://yenuine.com",
-      "logo": "https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777417614/negro_vbx1yu.png",
+      "logo": "https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777417614/negro_vbx1yu.png",
       "description": "Estudio creativo especializado en producción audiovisual, diseño gráfico, publicidad, videoclips y branding.",
       "email": "hola@yenuine.com",
       "contactPoint": {
@@ -70,153 +73,6 @@
     </script>
 
     <!-- ========== FIN SEO + SCHEMA ========== -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js">
-// ==========================================
-// PARTÍCULAS — sección artistas
-// ==========================================
-(function initArtistsParticles() {
-    const canvas = document.getElementById('artists-canvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    
-    function resize() {
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-    }
-    resize();
-    window.addEventListener('resize', resize);
-
-    const particles = Array.from({ length: 60 }, () => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 1.5 + 0.3,
-        opacity: Math.random() * 0.4 + 0.1,
-        speed: Math.random() * 0.4 + 0.1,
-        drift: (Math.random() - 0.5) * 0.3,
-    }));
-
-    function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => {
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255,255,255,${p.opacity})`;
-            ctx.fill();
-
-            p.y -= p.speed;
-            p.x += p.drift;
-            p.opacity -= 0.001;
-
-            if (p.y < 0 || p.opacity <= 0) {
-                p.x = Math.random() * canvas.width;
-                p.y = canvas.height;
-                p.opacity = Math.random() * 0.4 + 0.1;
-            }
-        });
-        requestAnimationFrame(draw);
-    }
-    draw();
-})();
-
-
-// ==========================================
-// FORMULARIO DE CONTACTO
-// ==========================================
-(function initContact() {
-    const form = document.getElementById('contactForm');
-    const success = document.getElementById('contactSuccess');
-    if (!form) return;
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const fields = form.querySelectorAll('input, textarea');
-        const name = fields[0].value;
-        const project = fields[1].value;
-        const desc = fields[2].value;
-
-        const subject = encodeURIComponent('Nuevo proyecto: ' + project);
-        const body = encodeURIComponent(
-            'Nombre: ' + name + '\n\n' +
-            'Proyecto: ' + project + '\n\n' +
-            'Descripción:\n' + desc
-        );
-
-        window.location.href = 'mailto:hola@yenuine.com?subject=' + subject + '&body=' + body;
-
-        form.style.display = 'none';
-        success.style.display = 'block';
-    });
-})();
-
-
-// ==========================================
-// NAV — fade out al bajar, fade in al subir
-// ==========================================
-(function initNav() {
-    const nav = document.querySelector('nav');
-    if (!nav) return;
-
-    let lastScroll = 0;
-
-    window.addEventListener('scroll', () => {
-        const current = window.scrollY;
-
-        if (current > 80) {
-            // Bajando — ocultar nav
-            nav.style.opacity = '0';
-            nav.style.transform = 'translateY(-10px)';
-        } else {
-            // Arriba del todo — mostrar nav
-            nav.style.opacity = '1';
-            nav.style.transform = 'translateY(0)';
-        }
-
-        lastScroll = current;
-    }, { passive: true });
-})();
-
-
-// ==========================================
-// SCROLL CINEMATOGRÁFICO — "Ver trabajo"
-// ==========================================
-(function initCinematicScroll() {
-    const btn = document.querySelector('a[href="#portfolio-scroll"]');
-    if (!btn) return;
-
-    btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.getElementById('portfolio-scroll');
-        if (!target) return;
-
-        const start = window.scrollY;
-        const end = target.getBoundingClientRect().top + window.scrollY;
-        const distance = end - start;
-        const duration = 1800; // ms — más lento = más cinematográfico
-        let startTime = null;
-
-        // Ease in-out cúbica — arranca lento, acelera, termina lento
-        function easeInOutCubic(t) {
-            return t < 0.5
-                ? 4 * t * t * t
-                : 1 - Math.pow(-2 * t + 2, 3) / 2;
-        }
-
-        function animate(currentTime) {
-            if (!startTime) startTime = currentTime;
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = easeInOutCubic(progress);
-
-            window.scrollTo(0, start + distance * eased);
-
-            if (progress < 1) requestAnimationFrame(animate);
-        }
-
-        requestAnimationFrame(animate);
-    });
-})();
-
-</script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -1182,7 +1038,7 @@
 #services .services-bg {
     position: absolute;
     inset: 0;
-    background: url('https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777341361/3_yox814.jpg') center center / cover no-repeat;
+    background: url('https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777341361/3_yox814.jpg') center center / cover no-repeat;
     opacity: 0.3;
     z-index: 0;
 }
@@ -1366,7 +1222,7 @@
 #contact .contact-bg {
     position: absolute;
     inset: 0;
-    background: url('https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777416023/2_hbtr2c.jpg') center center / cover no-repeat;
+    background: url('https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777416023/2_hbtr2c.jpg') center center / cover no-repeat;
     opacity: 0.3;
     z-index: 0;
 }
@@ -1862,7 +1718,7 @@ footer {
 </head>
 <body>
     
-<svg id="filters" style="display:none;">
+<svg id="filters" style="position:absolute;width:0;height:0;overflow:hidden;" aria-hidden="true">
   <defs>
     <filter id="threshold">
       <feColorMatrix in="SourceGraphic" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 255 -140" />
@@ -1875,7 +1731,7 @@ footer {
   <div class="blob b2"></div>
 </div>
 
-<nav><a href="#" class="nav-logo"><img src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777417614/negro_vbx1yu.png" alt="Yenuine" style="height:32px;width:auto;display:block;"></a></nav>
+<nav><a href="#" class="nav-logo"><img src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777417614/negro_vbx1yu.png" alt="Yenuine" style="height:32px;width:auto;display:block;"></a></nav>
 
 <section id="hero">
     <div class="hero-atmosphere"></div>
@@ -1894,8 +1750,8 @@ footer {
         </div>
         <p class="hero-sub">Entendemos tu visión desde adentro para materializar el contenido visual que tu marca necesita para escalar.</p>
         <div class="hero-ctas">
-            <a href="https://wa.me/+584128681830" target="_blank" class="btn-liquid">
-    <span class="btn-text">Hablemos</span>
+            <a href="videos.html" class="btn-liquid">
+    <span class="btn-text">Videos</span>
     <div class="btn-shimmer"></div>
 </a>
 <a href="#portfolio-scroll" class="btn-liquid secondary">
@@ -1909,16 +1765,16 @@ footer {
         <p class="trusted-mini-title">TRABAJAMOS CON <span>LOS MEJORES</span></p>
         <div class="logo-carousel-container">
             <div class="logo-track">
-                <div class="logo-item"><img src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777472340/Detailcar_tqbq4x.png" alt="Detailcar"></div>
-                <div class="logo-item"><img src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777472340/Sinonimo_z7vd88.png" alt="Sinónimo"></div>
-                <div class="logo-item"><img src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777472302/Motai_sf3kt6.png" alt="Motai"></div>
-                <div class="logo-item"><img src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777472298/Mootion_v7ky4i.png" alt="Mootion"></div>
-                <div class="logo-item"><img src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777472298/Chinexus_anjcve.png" alt="Chinexus"></div>
-                <div class="logo-item"><img src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777472340/Detailcar_tqbq4x.png" alt="Detailcar"></div>
-                <div class="logo-item"><img src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777472340/Sinonimo_z7vd88.png" alt="Sinónimo"></div>
-                <div class="logo-item"><img src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777472302/Motai_sf3kt6.png" alt="Motai"></div>
-                <div class="logo-item"><img src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777472298/Mootion_v7ky4i.png" alt="Mootion"></div>
-                <div class="logo-item"><img src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777472298/Chinexus_anjcve.png" alt="Chinexus"></div>
+                <div class="logo-item"><img loading="lazy" decoding="async" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777472340/Detailcar_tqbq4x.png" alt="Detailcar"></div>
+                <div class="logo-item"><img loading="lazy" decoding="async" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777472340/Sinonimo_z7vd88.png" alt="Sinónimo"></div>
+                <div class="logo-item"><img loading="lazy" decoding="async" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777472302/Motai_sf3kt6.png" alt="Motai"></div>
+                <div class="logo-item"><img loading="lazy" decoding="async" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777472298/Mootion_v7ky4i.png" alt="Mootion"></div>
+                <div class="logo-item"><img loading="lazy" decoding="async" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777472298/Chinexus_anjcve.png" alt="Chinexus"></div>
+                <div class="logo-item"><img loading="lazy" decoding="async" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777472340/Detailcar_tqbq4x.png" alt="Detailcar"></div>
+                <div class="logo-item"><img loading="lazy" decoding="async" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777472340/Sinonimo_z7vd88.png" alt="Sinónimo"></div>
+                <div class="logo-item"><img loading="lazy" decoding="async" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777472302/Motai_sf3kt6.png" alt="Motai"></div>
+                <div class="logo-item"><img loading="lazy" decoding="async" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777472298/Mootion_v7ky4i.png" alt="Mootion"></div>
+                <div class="logo-item"><img loading="lazy" decoding="async" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777472298/Chinexus_anjcve.png" alt="Chinexus"></div>
             </div>
             </div>
         </div>
@@ -1960,8 +1816,8 @@ footer {
 <section id="works">
     <div class="works-inner">
         <div class="works-marquee-col">
-                        <div class="marquee-row"><img class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777054625/POST-CHINEXUS_PRO2_iqpbta.jpg" alt=""><img class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777054625/POST-CHINEXUS_PRO_rn13wv.jpg" alt=""><img class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777054625/post-05-03_bwjrcb.jpg" alt=""><img class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777054625/carrusel_01_lyyomi.jpg" alt=""><img class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777054625/0001_01_vcnoxa.jpg" alt=""><img class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777054385/agenda_dw3lhj.jpg" alt=""><img class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777054625/POST-CHINEXUS_PRO2_iqpbta.jpg" alt=""><img class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777054625/POST-CHINEXUS_PRO_rn13wv.jpg" alt=""><img class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777054625/post-05-03_bwjrcb.jpg" alt=""><img class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777054625/carrusel_01_lyyomi.jpg" alt=""><img class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777054625/0001_01_vcnoxa.jpg" alt=""><img class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777054385/agenda_dw3lhj.jpg" alt=""></div>
-            <div class="marquee-row reverse"><img class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777054385/agenda_dw3lhj.jpg" alt=""><img class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777090534/Carrusel_0001_01_gjwbzv.png" alt=""><img class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777090534/Post_002-Oreo_ezsdmz.png" alt=""><img class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777090534/Prueba_z9eezh.png" alt=""><img class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777090534/Charlie_Faltan_1_dia_sanrgm.jpg" alt=""><img class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777090647/post_0002_vlqt0r.png" alt=""><img class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777054385/agenda_dw3lhj.jpg" alt=""><img class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777090534/Carrusel_0001_01_gjwbzv.png" alt=""><img class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777090534/Post_002-Oreo_ezsdmz.png" alt=""><img class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777090534/Prueba_z9eezh.png" alt=""><img class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777090534/Charlie_Faltan_1_dia_sanrgm.jpg" alt=""><img class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777090647/post_0002_vlqt0r.png" alt=""></div>
+                        <div class="marquee-row"><img loading="lazy" decoding="async" class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777054625/POST-CHINEXUS_PRO2_iqpbta.jpg" alt=""><img loading="lazy" decoding="async" class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777054625/POST-CHINEXUS_PRO_rn13wv.jpg" alt=""><img loading="lazy" decoding="async" class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777054625/post-05-03_bwjrcb.jpg" alt=""><img loading="lazy" decoding="async" class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777054625/carrusel_01_lyyomi.jpg" alt=""><img loading="lazy" decoding="async" class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777054625/0001_01_vcnoxa.jpg" alt=""><img loading="lazy" decoding="async" class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777054385/agenda_dw3lhj.jpg" alt=""><img loading="lazy" decoding="async" class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777054625/POST-CHINEXUS_PRO2_iqpbta.jpg" alt=""><img loading="lazy" decoding="async" class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777054625/POST-CHINEXUS_PRO_rn13wv.jpg" alt=""><img loading="lazy" decoding="async" class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777054625/post-05-03_bwjrcb.jpg" alt=""><img loading="lazy" decoding="async" class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777054625/carrusel_01_lyyomi.jpg" alt=""><img loading="lazy" decoding="async" class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777054625/0001_01_vcnoxa.jpg" alt=""><img loading="lazy" decoding="async" class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777054385/agenda_dw3lhj.jpg" alt=""></div>
+            <div class="marquee-row reverse"><img loading="lazy" decoding="async" class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777054385/agenda_dw3lhj.jpg" alt=""><img loading="lazy" decoding="async" class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777090534/Carrusel_0001_01_gjwbzv.png" alt=""><img loading="lazy" decoding="async" class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777090534/Post_002-Oreo_ezsdmz.png" alt=""><img loading="lazy" decoding="async" class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777090534/Prueba_z9eezh.png" alt=""><img loading="lazy" decoding="async" class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777090534/Charlie_Faltan_1_dia_sanrgm.jpg" alt=""><img loading="lazy" decoding="async" class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777090647/post_0002_vlqt0r.png" alt=""><img loading="lazy" decoding="async" class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777054385/agenda_dw3lhj.jpg" alt=""><img loading="lazy" decoding="async" class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777090534/Carrusel_0001_01_gjwbzv.png" alt=""><img loading="lazy" decoding="async" class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777090534/Post_002-Oreo_ezsdmz.png" alt=""><img loading="lazy" decoding="async" class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777090534/Prueba_z9eezh.png" alt=""><img loading="lazy" decoding="async" class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777090534/Charlie_Faltan_1_dia_sanrgm.jpg" alt=""><img loading="lazy" decoding="async" class="marquee-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777090647/post_0002_vlqt0r.png" alt=""></div>
         </div>
         <div class="works-text-col">
             <h2>Publicidad &amp;<br>Redes Sociales</h2>
@@ -2039,25 +1895,25 @@ footer {
     <div class="artists-grid">
         <div class="artist-card">
             <div class="artist-glow"></div>
-            <img class="artist-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777247126/Artist_1_b8mfva.png" alt="Artista 1" style="margin-top: -40px; margin-bottom: -50px;">
+            <img loading="lazy" decoding="async" class="artist-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777247126/Artist_1_b8mfva.png" alt="Artista 1" style="margin-top: -40px; margin-bottom: -50px;">
             <p class="artist-name">Charlie Zaa</p>
             <p class="artist-genre">Balada</p>
         </div>
         <div class="artist-card">
             <div class="artist-glow"></div>
-            <img class="artist-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777247126/Artist_2_pyjffy.png" alt="Artista 2">
+            <img loading="lazy" decoding="async" class="artist-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777247126/Artist_2_pyjffy.png" alt="Artista 2">
             <p class="artist-name">Luis Silva</p>
             <p class="artist-genre">Música Llanera</p>
         </div>
         <div class="artist-card">
             <div class="artist-glow"></div>
-            <img class="artist-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777247126/Artist_3_esdz3l.png" alt="Artista 3">
+            <img loading="lazy" decoding="async" class="artist-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777247126/Artist_3_esdz3l.png" alt="Artista 3">
             <p class="artist-name">Karina</p>
             <p class="artist-genre">Pop Latino</p>
         </div>
         <div class="artist-card">
             <div class="artist-glow"></div>
-            <img class="artist-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777247126/Artist_4_gctlcm.png" alt="Artista 4">
+            <img loading="lazy" decoding="async" class="artist-img" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777247126/Artist_4_gctlcm.png" alt="Artista 4">
             <p class="artist-name">Scarlett Linares</p>
             <p class="artist-genre">Música Llanera</p>
         </div>
@@ -2125,7 +1981,7 @@ footer {
     <div class="footer-divider"></div>
     <div class="footer-inner">
         <div class="footer-left">
-            <img class="footer-logo" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777417628/Recurso_11_4x_xgikjl.png" alt="Yenuine">
+            <img loading="lazy" decoding="async" class="footer-logo" src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777417628/Recurso_11_4x_xgikjl.png" alt="Yenuine">
             <p class="footer-tagline">
                 <strong>No somos una agencia de contenido.</strong><br>
                 Somos una productora creativa con ambición cinematográfica. Filmmaking, diseño, contenido visual y desarrollo web — todo desde una sola visión.
@@ -2182,15 +2038,15 @@ const CONFIG = {
     speed: 2.5,
     maxBlur: 8.0,
     images: [
-        'https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777172480/0003_qzrqyw.jpg',
-        'https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777172309/0004_to6vnk.jpg',
-        'https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777172069/Post_MontagemGira_nylidg.jpg',
-        'https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777171963/001_cncnn7.jpg',
-        'https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777171233/0001_bj88ds.jpg',
-        'https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777149953/004_xt84mb.jpg',
-        'https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777149802/cover_art_dome_oelnsp.png',
-        'https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777149801/Cover_Art_1_2_pvm7tl.png',
-        'https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777149800/IWTFY_cprdvh.jpg'
+        'https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777172480/0003_qzrqyw.jpg',
+        'https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777172309/0004_to6vnk.jpg',
+        'https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777172069/Post_MontagemGira_nylidg.jpg',
+        'https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777171963/001_cncnn7.jpg',
+        'https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777171233/0001_bj88ds.jpg',
+        'https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777149953/004_xt84mb.jpg',
+        'https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777149802/cover_art_dome_oelnsp.png',
+        'https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777149801/Cover_Art_1_2_pvm7tl.png',
+        'https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777149800/IWTFY_cprdvh.jpg'
     ]
 };
 
@@ -2244,7 +2100,9 @@ const fragmentShader = `
         elts.text2.textContent = texts[(textIndex + 1) % texts.length];
     }
 
+    let heroVisible = true;
     function animateLiquid() {
+        if (!heroVisible) return;
         requestAnimationFrame(animateLiquid);
         let newTime = new Date(); let dt = (newTime.getTime() - timeLiquid.getTime()) / 1000;
         timeLiquid = newTime; cooldown -= dt;
@@ -2259,7 +2117,15 @@ const fragmentShader = `
             elts.text1.style.filter = "none"; elts.text1.style.opacity = "0%";
         }
     }
-    if (elts.text1) animateLiquid();
+    if (elts.text1) {
+        animateLiquid();
+        const hero = document.getElementById('hero');
+        if (hero) new IntersectionObserver(([entry]) => {
+            const was = heroVisible;
+            heroVisible = entry.isIntersecting;
+            if (heroVisible && !was) { timeLiquid = new Date(); animateLiquid(); }
+        }).observe(hero);
+    }
 })();
 
 // ==========================================
@@ -2271,15 +2137,15 @@ const fragmentShader = `
     if (!section || !container) return;
 
     const images = [
-        'https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777172480/0003_qzrqyw.jpg',
-        'https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777172309/0004_to6vnk.jpg',
-        'https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777172069/Post_MontagemGira_nylidg.jpg',
-        'https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777171963/001_cncnn7.jpg',
-        'https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777171233/0001_bj88ds.jpg',
-        'https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777149953/004_xt84mb.jpg',
-        'https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777149802/cover_art_dome_oelnsp.png',
-        'https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777149801/Cover_Art_1_2_pvm7tl.png',
-        'https://res.cloudinary.com/dqv3ntw1e/image/upload/v1777149800/IWTFY_cprdvh.jpg'
+        'https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777172480/0003_qzrqyw.jpg',
+        'https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777172309/0004_to6vnk.jpg',
+        'https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777172069/Post_MontagemGira_nylidg.jpg',
+        'https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777171963/001_cncnn7.jpg',
+        'https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777171233/0001_bj88ds.jpg',
+        'https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777149953/004_xt84mb.jpg',
+        'https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777149802/cover_art_dome_oelnsp.png',
+        'https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777149801/Cover_Art_1_2_pvm7tl.png',
+        'https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777149800/IWTFY_cprdvh.jpg'
     ];
 
     const items = images.map((src, i) => {
@@ -2340,9 +2206,16 @@ const fragmentShader = `
             item.el.style.filter = `blur(${blur}px)`;
         });
 
-        requestAnimationFrame(update);
+        if (portfolioVisible) requestAnimationFrame(update);
     }
 
+    // Solo anima mientras la sección está en pantalla (antes corría siempre)
+    let portfolioVisible = false;
+    new IntersectionObserver(([entry]) => {
+        const wasVisible = portfolioVisible;
+        portfolioVisible = entry.isIntersecting;
+        if (portfolioVisible && !wasVisible) requestAnimationFrame(update);
+    }, { rootMargin: '300px 0px' }).observe(section);
     update();
 })();
 /* --- INTERACCIÓN OPTIMIZADA --- */
@@ -2503,152 +2376,6 @@ document.querySelectorAll('.btn-liquid').forEach(btn => {
 })();
 
 </script>
-<script src="https://player.vimeo.com/api/player.js">
-// ==========================================
-// PARTÍCULAS — sección artistas
-// ==========================================
-(function initArtistsParticles() {
-    const canvas = document.getElementById('artists-canvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    
-    function resize() {
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-    }
-    resize();
-    window.addEventListener('resize', resize);
 
-    const particles = Array.from({ length: 60 }, () => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 1.5 + 0.3,
-        opacity: Math.random() * 0.4 + 0.1,
-        speed: Math.random() * 0.4 + 0.1,
-        drift: (Math.random() - 0.5) * 0.3,
-    }));
-
-    function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => {
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255,255,255,${p.opacity})`;
-            ctx.fill();
-
-            p.y -= p.speed;
-            p.x += p.drift;
-            p.opacity -= 0.001;
-
-            if (p.y < 0 || p.opacity <= 0) {
-                p.x = Math.random() * canvas.width;
-                p.y = canvas.height;
-                p.opacity = Math.random() * 0.4 + 0.1;
-            }
-        });
-        requestAnimationFrame(draw);
-    }
-    draw();
-})();
-
-
-// ==========================================
-// FORMULARIO DE CONTACTO
-// ==========================================
-(function initContact() {
-    const form = document.getElementById('contactForm');
-    const success = document.getElementById('contactSuccess');
-    if (!form) return;
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const fields = form.querySelectorAll('input, textarea');
-        const name = fields[0].value;
-        const project = fields[1].value;
-        const desc = fields[2].value;
-
-        const subject = encodeURIComponent('Nuevo proyecto: ' + project);
-        const body = encodeURIComponent(
-            'Nombre: ' + name + '\n\n' +
-            'Proyecto: ' + project + '\n\n' +
-            'Descripción:\n' + desc
-        );
-
-        window.location.href = 'mailto:hola@yenuine.com?subject=' + subject + '&body=' + body;
-
-        form.style.display = 'none';
-        success.style.display = 'block';
-    });
-})();
-
-
-// ==========================================
-// NAV — fade out al bajar, fade in al subir
-// ==========================================
-(function initNav() {
-    const nav = document.querySelector('nav');
-    if (!nav) return;
-
-    let lastScroll = 0;
-
-    window.addEventListener('scroll', () => {
-        const current = window.scrollY;
-
-        if (current > 80) {
-            // Bajando — ocultar nav
-            nav.style.opacity = '0';
-            nav.style.transform = 'translateY(-10px)';
-        } else {
-            // Arriba del todo — mostrar nav
-            nav.style.opacity = '1';
-            nav.style.transform = 'translateY(0)';
-        }
-
-        lastScroll = current;
-    }, { passive: true });
-})();
-
-
-// ==========================================
-// SCROLL CINEMATOGRÁFICO — "Ver trabajo"
-// ==========================================
-(function initCinematicScroll() {
-    const btn = document.querySelector('a[href="#portfolio-scroll"]');
-    if (!btn) return;
-
-    btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.getElementById('portfolio-scroll');
-        if (!target) return;
-
-        const start = window.scrollY;
-        const end = target.getBoundingClientRect().top + window.scrollY;
-        const distance = end - start;
-        const duration = 1800; // ms — más lento = más cinematográfico
-        let startTime = null;
-
-        // Ease in-out cúbica — arranca lento, acelera, termina lento
-        function easeInOutCubic(t) {
-            return t < 0.5
-                ? 4 * t * t * t
-                : 1 - Math.pow(-2 * t + 2, 3) / 2;
-        }
-
-        function animate(currentTime) {
-            if (!startTime) startTime = currentTime;
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = easeInOutCubic(progress);
-
-            window.scrollTo(0, start + distance * eased);
-
-            if (progress < 1) requestAnimationFrame(animate);
-        }
-
-        requestAnimationFrame(animate);
-    });
-})();
-
-</script>
 </body>
 </html>
