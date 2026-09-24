@@ -122,14 +122,13 @@ const VIDEOS = [
     margin: 0 20px 40px; padding: 18px; border-radius: 20px;
     background: var(--panel); border: 1px solid var(--border);
   }
-  /* Mosaico: horizontales y verticales mezclados */
-  .wall { columns: 4 240px; column-gap: 14px; }
+  /* Mosaico: horizontales y verticales mezclados (cada vertical ocupa 3 filas) */
+  .wall { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; grid-auto-flow: dense; }
   .media {
     position: relative; overflow: hidden; border-radius: 12px; background: #000;
     aspect-ratio: 16 / 9; isolation: isolate;
-    break-inside: avoid; margin-bottom: 14px;
   }
-  .media.v { aspect-ratio: 9 / 16; }
+  .media.v { aspect-ratio: auto; grid-row: span 3; }
   .media img.thumb {
     position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
     transition: opacity .6s ease;
@@ -158,8 +157,8 @@ const VIDEOS = [
     .topbar { padding-left: 16px; padding-right: 16px; }
     .page-title { padding-left: 16px; padding-right: 16px; }
     .board { margin: 0 0 40px; padding: 10px; border-radius: 0; border-left: 0; border-right: 0; }
-    .wall { columns: 2; column-gap: 10px; }
-    .media { margin-bottom: 10px; border-radius: 10px; }
+    .wall { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .media { border-radius: 10px; }
     .cta { padding: 0 14px; }
   }
   @media (prefers-reduced-motion: reduce) {
