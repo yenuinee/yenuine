@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arma tu proyecto — Yenuine</title>
+<meta name="description" content="Cuéntanos qué necesitas: video, spots, drone, motion graphics, diseño, redes o web. Arma tu proyecto con Yenuine en 2 minutos.">
+<meta property="og:title" content="Arma tu proyecto — Yenuine">
+<meta property="og:description" content="Elige lo que necesitas y recibe tu propuesta.">
+<link rel="icon" href="favicon.ico">
+<style>
+  :root{
+    --red:#E8001D; --red-soft:rgba(232,0,29,.14); --bg:#0a0a0a;
+    --glass:rgba(255,255,255,.04); --glass-b:rgba(255,255,255,.09);
+    --txt:#ede9e3; --muted:#8d8d8d; --r:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--txt);font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;min-height:100%}
+  body{overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:-20%;z-index:-1;
+    background:radial-gradient(40% 35% at 15% 10%,rgba(232,0,29,.18),transparent 70%),
+               radial-gradient(35% 30% at 90% 85%,rgba(232,0,29,.10),transparent 70%);
+    animation:drift 18s ease-in-out infinite alternate}
+  @keyframes drift{to{transform:translate(4%,3%) scale(1.05)}}
+
+  .wrap{max-width:860px;margin:0 auto;padding:28px 20px 60px}
+  header{display:flex;justify-content:space-between;align-items:center;margin-bottom:34px}
+  .logo{font-weight:800;letter-spacing:.18em;font-size:15px;color:var(--txt);text-decoration:none}
+  .logo span{color:var(--red)}
+  .back{color:var(--muted);text-decoration:none;font-size:14px}
+  .back:hover{color:var(--txt)}
+
+  .progress{height:3px;background:var(--glass-b);border-radius:9px;overflow:hidden;margin-bottom:10px}
+  .progress i{display:block;height:100%;width:0;background:var(--red);transition:width .5s cubic-bezier(.7,0,.2,1);box-shadow:0 0 14px var(--red)}
+  .steplabel{font-size:12px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-bottom:26px}
+
+  .step{display:none;animation:in .45s cubic-bezier(.2,.7,.2,1)}
+  .step.active{display:block}
+  @keyframes in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+  h1{font-size:clamp(28px,5vw,44px);font-weight:800;line-height:1.08;letter-spacing:-.02em;margin-bottom:10px}
+  h1 em{font-style:normal;color:var(--red)}
+  .sub{color:var(--muted);margin-bottom:28px;font-size:16px;line-height:1.5}
+  h3{font-size:15px;font-weight:600;margin:26px 0 12px}
+  h3 small{color:var(--muted);font-weight:400}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+  .card{position:relative;background:var(--glass);border:1px solid var(--glass-b);border-radius:var(--r);
+    padding:18px 16px;cursor:pointer;transition:.25s;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    user-select:none;text-align:left;color:inherit;font:inherit}
+  .card:hover{border-color:rgba(255,255,255,.22);transform:translateY(-2px)}
+  .card .ic{font-size:26px;margin-bottom:10px;display:block}
+  .card b{display:block;font-size:15px;font-weight:600;margin-bottom:4px}
+  .card small{color:var(--muted);font-size:13px;line-height:1.4}
+  .card.on{border-color:var(--red);background:var(--red-soft);box-shadow:0 0 0 1px var(--red),0 10px 30px -10px rgba(232,0,29,.5)}
+  .card .check{position:absolute;top:12px;right:12px;width:20px;height:20px;border-radius:50%;
+    border:1.5px solid var(--glass-b);display:grid;place-items:center;font-size:11px;transition:.2s}
+  .card.on .check{background:var(--red);border-color:var(--red)}
+  .card.on .check::after{content:"✓";color:#fff}
+
+  .chips{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{background:var(--glass);border:1px solid var(--glass-b);color:var(--txt);border-radius:99px;
+    padding:10px 16px;font:inherit;font-size:14px;cursor:pointer;transition:.2s}
+  .chip:hover{border-color:rgba(255,255,255,.25)}
+  .chip.on{background:var(--red);border-color:var(--red);color:#fff}
+
+  .fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .fields .full{grid-column:1/-1}
+  label.f{display:flex;flex-direction:column;gap:7px;font-size:13px;color:var(--muted)}
+  label.f span em{color:var(--red);font-style:normal}
+  input,textarea,select{background:var(--glass);border:1px solid var(--glass-b);border-radius:12px;color:var(--txt);
+    font:inherit;font-size:15px;padding:13px 14px;outline:none;transition:.2s;width:100%}
+  textarea{min-height:120px;resize:vertical;line-height:1.5}
+  input:focus,textarea:focus,select:focus{border-color:var(--red);box-shadow:0 0 0 3px var(--red-soft)}
+  select option{background:#111}
+  .err{border-color:var(--red)!important;animation:shake .35s}
+  @keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+  .hint{font-size:13px;color:var(--red);min-height:18px;margin-top:14px}
+
+  .cond{display:none}.cond.show{display:block;animation:in .35s}
+
+  .nav{display:flex;justify-content:space-between;align-items:center;margin-top:34px;gap:12px}
+  .btn{border:0;border-radius:99px;padding:14px 26px;font:inherit;font-weight:600;font-size:15px;cursor:pointer;transition:.2s}
+  .btn.primary{background:var(--red);color:#fff;box-shadow:0 10px 30px -10px rgba(232,0,29,.7)}
+  .btn.primary:hover{transform:translateY(-2px);filter:brightness(1.1)}
+  .btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--glass-b)}
+  .btn.ghost:hover{color:var(--txt)}
+  .btn[hidden]{visibility:hidden;display:inline-block}
+
+  .summary{background:var(--glass);border:1px solid var(--glass-b);border-radius:var(--r);padding:6px 20px;backdrop-filter:blur(12px)}
+  .summary .row{display:flex;justify-content:space-between;gap:18px;padding:14px 0;border-bottom:1px solid var(--glass-b);font-size:14px}
+  .summary .row:last-child{border:0}
+  .summary .row span{color:var(--muted);flex-shrink:0}
+  .summary .row b{font-weight:500;text-align:right;white-space:pre-wrap}
+  .summary .edit{color:var(--red);font-size:12px;cursor:pointer;margin-left:8px;font-weight:400}
+
+  .sendopts{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+  .done{text-align:center;padding:40px 0}
+  .done .big{font-size:64px;margin-bottom:14px}
+  .legal{font-size:12px;color:var(--muted);margin-top:16px;line-height:1.5}
+
+  @media (max-width:600px){
+    .fields{grid-template-columns:1fr}
+    .grid{grid-template-columns:1fr 1fr}
+    .card{padding:14px 12px}.card small{display:none}
+    .nav .btn{flex:1}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="/"><img src="https://res.cloudinary.com/dqv3ntw1e/image/upload/f_auto,q_auto/v1777417614/negro_vbx1yu.png" alt="Yenuine" style="height:28px;width:auto;display:block"></a>
+    <a class="back" href="/">← Volver al inicio</a>
+  </header>
+
+  <div class="progress"><i id="bar"></i></div>
+  <div class="steplabel" id="steplabel">Paso 1 de 5</div>
+
+  <form id="wizard" novalidate>
+
+    <!-- PASO 1: SERVICIOS -->
+    <section class="step active" data-step="1">
+      <h1>¿Qué quieres <em>crear</em>?</h1>
+      <p class="sub">Elige uno o varios servicios. En 2 minutos tenemos todo para enviarte una propuesta.</p>
+      <div class="grid" id="services"></div>
+    </section>
+
+    <!-- PASO 2: DETALLES -->
+    <section class="step" data-step="2">
+      <h1>Cuéntanos del <em>proyecto</em></h1>
+      <p class="sub">Mientras más claro, más exacta la propuesta.</p>
+
+      <h3>¿Para quién es?</h3>
+      <div class="chips" data-name="tipoCliente" data-single>
+        <button type="button" class="chip">Marca / negocio</button>
+        <button type="button" class="chip">Artista / músico</button>
+        <button type="button" class="chip">Evento / productora</button>
+        <button type="button" class="chip">Personal</button>
+        <button type="button" class="chip">Agencia</button>
+      </div>
+
+      <div class="cond" data-if="video">
+        <h3>Formato del video <small>(puedes elegir varios)</small></h3>
+        <div class="chips" data-name="formato">
+          <button type="button" class="chip">Vertical (Reels / TikTok)</button>
+          <button type="button" class="chip">Horizontal (YouTube / TV)</button>
+          <button type="button" class="chip">Cuadrado</button>
+          <button type="button" class="chip">No sé, recomiéndenme</button>
+        </div>
+      </div>
+
+      <div class="cond" data-if="evento">
+        <h3>Datos del evento</h3>
+        <div class="fields">
+          <label class="f"><span>Fecha del evento</span><input type="date" name="fechaEvento"></label>
+          <label class="f"><span>Ciudad / lugar</span><input type="text" name="lugarEvento" placeholder="Ej: Concha Acústica, Maracay"></label>
+        </div>
+      </div>
+
+      <div class="cond" data-if="redes">
+        <h3>Redes a trabajar</h3>
+        <div class="chips" data-name="redesSociales">
+          <button type="button" class="chip">Instagram</button>
+          <button type="button" class="chip">TikTok</button>
+          <button type="button" class="chip">Facebook</button>
+          <button type="button" class="chip">YouTube</button>
+          <button type="button" class="chip">Meta Ads</button>
+        </div>
+      </div>
+
+      <h3>Descríbenos la idea <em style="color:var(--red);font-style:normal">*</em></h3>
+      <textarea name="descripcion" placeholder="Qué quieres lograr, referencias, estilo, lo que tengas en mente…" required></textarea>
+
+      <h3>¿Tienes referencias? <small>(opcional)</small></h3>
+      <input type="url" name="referencia" placeholder="Link de un video, cuenta o página que te guste">
+    </section>
+
+    <!-- PASO 3: PRESUPUESTO Y PLAZO -->
+    <section class="step" data-step="3">
+      <h1>Presupuesto y <em>tiempos</em></h1>
+      <p class="sub">Es una referencia para armar opciones que se ajusten a ti. Sin compromiso.</p>
+
+      <h3>Presupuesto aproximado (USD)</h3>
+      <div class="chips" data-name="presupuesto" data-single data-required>
+        <button type="button" class="chip">Menos de $200</button>
+        <button type="button" class="chip">$200 – $500</button>
+        <button type="button" class="chip">$500 – $1.500</button>
+        <button type="button" class="chip">$1.500 – $5.000</button>
+        <button type="button" class="chip">Más de $5.000</button>
+        <button type="button" class="chip">Aún no lo sé</button>
+      </div>
+
+      <h3>¿Para cuándo lo necesitas?</h3>
+      <div class="chips" data-name="plazo" data-single data-required>
+        <button type="button" class="chip">Urgente (menos de 1 semana)</button>
+        <button type="button" class="chip">2 a 4 semanas</button>
+        <button type="button" class="chip">1 a 2 meses</button>
+        <button type="button" class="chip">Soy flexible</button>
+      </div>
+    </section>
+
+    <!-- PASO 4: DATOS -->
+    <section class="step" data-step="4">
+      <h1>¿Cómo te <em>contactamos</em>?</h1>
+      <p class="sub">Solo lo usamos para responderte sobre este proyecto.</p>
+      <div class="fields">
+        <label class="f"><span>Nombre <em>*</em></span><input type="text" name="nombre" autocomplete="name" required></label>
+        <label class="f"><span>Marca / empresa</span><input type="text" name="empresa" autocomplete="organization"></label>
+        <label class="f"><span>WhatsApp <em>*</em></span><input type="tel" name="whatsapp" autocomplete="tel" placeholder="+58 412 000 0000" required></label>
+        <label class="f"><span>Correo</span><input type="email" name="email" autocomplete="email" placeholder="tu@correo.com"></label>
+        <label class="f"><span>Instagram</span><input type="text" name="instagram" placeholder="@tuMarca"></label>
+        <label class="f"><span>Ciudad / país <em>*</em></span><input type="text" name="ciudad" placeholder="Acarigua, Venezuela" required></label>
+        <label class="f full"><span>¿Cómo nos conociste?</span>
+          <select name="origen">
+            <option value="">Selecciona…</option>
+            <option>Instagram</option><option>TikTok</option><option>Google</option>
+            <option>Recomendación</option><option>Vi un trabajo de ustedes</option><option>Otro</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <!-- PASO 5: RESUMEN -->
+    <section class="step" data-step="5">
+      <h1>Todo <em>listo</em></h1>
+      <p class="sub">Revisa tu solicitud y envíala. Te respondemos en menos de 24 horas.</p>
+      <div class="summary" id="summary"></div>
+      <div class="sendopts">
+        <button type="button" class="btn primary" id="send">Enviar solicitud →</button>
+      </div>
+      <p class="hint" id="sendErr" style="display:none">No pudimos enviarlo. Inténtalo de nuevo o <a id="waFallback" href="#" target="_blank" style="color:var(--red)">escríbenos por WhatsApp</a>.</p>
+      <p class="legal">Al enviar aceptas que Yenuine use estos datos solo para contactarte sobre tu proyecto.</p>
+    </section>
+
+    <!-- FINAL -->
+    <section class="step" data-step="6">
+      <div class="done">
+        <div class="big">🎬</div>
+        <h1>¡Recibido, <em id="doneName">gracias</em>!</h1>
+        <p class="sub">Ya tenemos tu proyecto. Te escribimos pronto con una propuesta.</p>
+        <a class="btn primary" href="/" style="text-decoration:none;display:inline-block">Volver al inicio</a>
+      </div>
+    </section>
+
+    <div class="hint" id="hint"></div>
+    <div class="nav" id="nav">
+      <button type="button" class="btn ghost" id="prev" hidden>← Atrás</button>
+      <button type="button" class="btn primary" id="next">Continuar →</button>
+    </div>
+  </form>
+</div>
+
+<script>
+/* ========= CONFIGURACIÓN — edita esto ========= */
+const CONFIG = {
+  // Las solicitudes llegan a este correo vía FormSubmit (gratis, sin cuenta).
+  // La PRIMERA vez que alguien envíe, FormSubmit manda un correo de activación a hola@yenuine.com: hay que darle "Activate".
+  email: "hola@yenuine.com",
+  whatsapp: "584128681830"           // respaldo si el envío falla
+};
+
+const SERVICES = [
+  {id:"spot",    tag:"video",  ic:"🎬", t:"Spot publicitario", d:"Comerciales para marcas y eventos"},
+  {id:"video",   tag:"video",  ic:"🎥", t:"Producción de video", d:"Videoclips, contenido, filmmaking"},
+  {id:"evento",  tag:"evento", ic:"🎤", t:"Cobertura de evento", d:"Conciertos, shows, fiestas"},
+  {id:"drone",   tag:"video",  ic:"🚁", t:"Tomas con drone", d:"Aéreas para video y fotografía"},
+  {id:"motion",  tag:"video",  ic:"✨", t:"Motion graphics", d:"Animación, títulos, 3D"},
+  {id:"edicion", tag:"video",  ic:"🎞️", t:"Edición y color", d:"Tú grabas, nosotros editamos"},
+  {id:"diseno",  tag:"",       ic:"🎨", t:"Diseño gráfico", d:"Branding, flyers, piezas"},
+  {id:"redes",   tag:"redes",  ic:"📱", t:"Redes sociales", d:"Estrategia, contenido y Meta Ads"},
+  {id:"web",     tag:"",       ic:"💻", t:"Desarrollo web", d:"Páginas, catálogos, e-commerce"},
+];
+/* ============================================== */
+
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const TOTAL = 5; let step = 1;
+const state = { servicios: [] };
+
+// Render servicios
+$("#services").innerHTML = SERVICES.map(s =>
+  `<button type="button" class="card" data-id="${s.id}" data-tag="${s.tag}">
+     <span class="check"></span><span class="ic">${s.ic}</span><b>${s.t}</b><small>${s.d}</small>
+   </button>`).join("");
+
+$$("#services .card").forEach(c => c.onclick = () => {
+  c.classList.toggle("on");
+  state.servicios = $$("#services .card.on").map(x => SERVICES.find(s => s.id === x.dataset.id));
+  hint("");
+});
+
+// Chips (single / multi)
+$$(".chips").forEach(group => {
+  const single = group.hasAttribute("data-single");
+  group.querySelectorAll(".chip").forEach(ch => ch.onclick = () => {
+    if (single) group.querySelectorAll(".chip").forEach(x => x !== ch && x.classList.remove("on"));
+    ch.classList.toggle("on"); hint("");
+  });
+});
+const chipVal = name => $$(`.chips[data-name="${name}"] .chip.on`).map(c => c.textContent.trim());
+
+function updateConditionals(){
+  const tags = new Set(state.servicios.map(s => s.tag));
+  $$(".cond").forEach(c => c.classList.toggle("show", tags.has(c.dataset.if)));
+}
+
+function hint(msg){ $("#hint").textContent = msg; }
+
+function validate(n){
+  if (n === 1 && !state.servicios.length) return hint("Elige al menos un servicio."), false;
+  if (n === 2){
+    const d = $('[name="descripcion"]');
+    if (d.value.trim().length < 10) return flag(d, "Cuéntanos un poco más de la idea (mínimo 10 caracteres)."), false;
+  }
+  if (n === 3){
+    for (const g of $$('.step[data-step="3"] .chips[data-required]'))
+      if (!g.querySelector(".chip.on")) return hint("Elige una opción de presupuesto y de plazo."), false;
+  }
+  if (n === 4){
+    for (const el of $$('.step[data-step="4"] [required]'))
+      if (!el.value.trim()) return flag(el, "Completa los campos marcados con *."), false;
+    const wa = $('[name="whatsapp"]');
+    if (wa.value.replace(/\D/g,"").length < 8) return flag(wa, "Revisa el número de WhatsApp."), false;
+    const em = $('[name="email"]');
+    if (em.value && !em.checkValidity()) return flag(em, "Revisa el correo."), false;
+  }
+  return true;
+}
+function flag(el, msg){
+  el.classList.remove("err"); void el.offsetWidth; el.classList.add("err");
+  el.focus(); hint(msg);
+  el.addEventListener("input", () => el.classList.remove("err"), {once:true});
+}
+
+function collect(){
+  const v = n => ($(`[name="${n}"]`)?.value || "").trim();
+  return {
+    Servicios: state.servicios.map(s => s.t).join(", "),
+    "Para": chipVal("tipoCliente").join(""),
+    Formato: chipVal("formato").join(", "),
+    "Fecha evento": v("fechaEvento"),
+    "Lugar evento": v("lugarEvento"),
+    Redes: chipVal("redesSociales").join(", "),
+    Idea: v("descripcion"),
+    Referencia: v("referencia"),
+    Presupuesto: chipVal("presupuesto").join(""),
+    Plazo: chipVal("plazo").join(""),
+    Nombre: v("nombre"),
+    Empresa: v("empresa"),
+    WhatsApp: v("whatsapp"),
+    Correo: v("email"),
+    Instagram: v("instagram"),
+    Ciudad: v("ciudad"),
+    "Nos conoció por": v("origen"),
+  };
+}
+const STEP_OF = {Servicios:1,Para:2,Formato:2,"Fecha evento":2,"Lugar evento":2,Redes:2,Idea:2,Referencia:2,Presupuesto:3,Plazo:3};
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function renderSummary(){
+  const data = collect();
+  $("#summary").innerHTML = Object.entries(data).filter(([,v]) => v).map(([k,v]) =>
+    `<div class="row"><span>${k}<a class="edit" data-go="${STEP_OF[k]||4}">editar</a></span><b>${esc(v)}</b></div>`).join("");
+  $$("#summary .edit").forEach(a => a.onclick = () => go(+a.dataset.go));
+}
+
+function messageText(){
+  const lines = Object.entries(collect()).filter(([,v]) => v).map(([k,v]) => `*${k}:* ${v}`);
+  return `Hola Yenuine 👋 Quiero cotizar un proyecto:\n\n${lines.join("\n")}`;
+}
+
+function go(n){
+  step = n;
+  $$(".step").forEach(s => s.classList.toggle("active", +s.dataset.step === n));
+  $("#bar").style.width = Math.min(n / TOTAL, 1) * 100 + "%";
+  $("#steplabel").textContent = n <= TOTAL ? `Paso ${n} de ${TOTAL}` : "Enviado";
+  $("#prev").hidden = n === 1;
+  $("#next").style.display = n >= TOTAL ? "none" : "";
+  $("#nav").style.display = n > TOTAL ? "none" : "";
+  if (n === 2) updateConditionals();
+  if (n === 5) renderSummary();
+  hint(""); window.scrollTo({top:0,behavior:"smooth"});
+}
+
+$("#next").onclick = () => { if (validate(step)) go(step + 1); };
+$("#prev").onclick = () => go(step - 1);
+document.addEventListener("keydown", e => {
+  if (e.key === "Enter" && e.target.tagName !== "TEXTAREA" && step < TOTAL){ e.preventDefault(); $("#next").click(); }
+});
+
+function finish(){ $("#doneName").textContent = collect().Nombre.split(" ")[0] || "gracias"; go(6); }
+
+$("#send").onclick = async () => {
+  const btn = $("#send"), d = collect();
+  btn.disabled = true; btn.textContent = "Enviando…"; $("#sendErr").style.display = "none";
+  const payload = {
+    _subject: `Nuevo proyecto: ${d.Nombre} — ${d.Servicios}`,
+    _template: "table",
+    _captcha: "false",
+    ...(d.Correo ? {_replyto: d.Correo} : {}),
+  };
+  Object.entries(d).forEach(([k,v]) => { if (v) payload[k] = v; });
+  try{
+    const r = await fetch(`https://formsubmit.co/ajax/${CONFIG.email}`, {
+      method:"POST", headers:{"Content-Type":"application/json",Accept:"application/json"},
+      body: JSON.stringify(payload)
+    });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok || String(j.success) === "false") throw new Error(j.message || r.status);
+    finish();
+  }catch(e){
+    $("#waFallback").href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(messageText())}`;
+    $("#sendErr").style.display = "block";
+    btn.disabled = false; btn.textContent = "Enviar solicitud →";
+  }
+};
+
+go(1);
+</script>
+</body>
+</html>

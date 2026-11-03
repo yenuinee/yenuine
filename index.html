@@ -1375,6 +1375,26 @@
 
 .btn-contact:hover::before { left: 130%; }
 
+.contact-text {
+    text-align: center;
+    color: rgba(237,233,227,0.6);
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 460px;
+    margin: -30px auto 36px;
+}
+.btn-contact-cta {
+    align-self: center;
+    text-decoration: none;
+    background: #E8001D;
+    border-color: #E8001D;
+    box-shadow: 0 12px 40px -12px rgba(232,0,29,0.8);
+}
+.btn-contact-cta:hover {
+    background: #ff1a36;
+    border-color: #ff1a36;
+}
+
 /* Mensaje de confirmación */
 .contact-success {
     display: none;
@@ -1952,28 +1972,11 @@ footer {
     <div class="contact-inner">
         <span class="contact-label">Trabajemos juntos</span>
         <h2 class="contact-title">Cuéntanos tu<br><span>Proyecto</span></h2>
-        <form class="contact-form" id="contactForm">
-            <div class="contact-field">
-                <label>Nombre</label>
-                <input type="text" placeholder="Tu nombre" required>
-            </div>
-            <div class="contact-field">
-                <label>Proyecto</label>
-                <input type="text" placeholder="¿En qué estás trabajando?" required>
-            </div>
-            <div class="contact-field">
-                <label>Descripción</label>
-                <textarea placeholder="Cuéntanos más sobre tu idea, visión o lo que necesitas..." required></textarea>
-            </div>
-            <button type="submit" class="btn-contact">
-                Enviar mensaje
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </button>
-        </form>
-        <div class="contact-success" id="contactSuccess">
-            <strong>¡Mensaje enviado!</strong>
-            Nos pondremos en contacto contigo muy pronto.
-        </div>
+        <p class="contact-text">Elige lo que necesitas, cuéntanos tu idea y en 2 minutos tenemos todo para enviarte una propuesta.</p>
+        <a href="cotizar.html" class="btn-contact btn-contact-cta">
+            Arma tu proyecto
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
     </div>
 </section>
 
@@ -2278,34 +2281,7 @@ document.querySelectorAll('.btn-liquid').forEach(btn => {
 })();
 
 
-// ==========================================
-// FORMULARIO DE CONTACTO
-// ==========================================
-(function initContact() {
-    const form = document.getElementById('contactForm');
-    const success = document.getElementById('contactSuccess');
-    if (!form) return;
 
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const fields = form.querySelectorAll('input, textarea');
-        const name = fields[0].value;
-        const project = fields[1].value;
-        const desc = fields[2].value;
-
-        const subject = encodeURIComponent('Nuevo proyecto: ' + project);
-        const body = encodeURIComponent(
-            'Nombre: ' + name + '\n\n' +
-            'Proyecto: ' + project + '\n\n' +
-            'Descripción:\n' + desc
-        );
-
-        window.location.href = 'mailto:hola@yenuine.com?subject=' + subject + '&body=' + body;
-
-        form.style.display = 'none';
-        success.style.display = 'block';
-    });
-})();
 
 
 // ==========================================
