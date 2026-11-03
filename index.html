@@ -1429,6 +1429,14 @@
     color: #ede9e3; font: inherit; font-size: 20px; padding: 16px 16px; border-radius: 16px;
     cursor: pointer; transition: transform .2s, border-color .2s, background .2s;
 }
+.qz-i {
+    width: 24px; height: 24px; flex-shrink: 0; color: #fff;
+    filter: drop-shadow(0 0 4px rgba(255,255,255,0.55)) drop-shadow(0 0 12px rgba(255,255,255,0.25));
+    transition: filter .25s, transform .25s;
+}
+.qz-o:hover .qz-i { filter: drop-shadow(0 0 6px rgba(255,255,255,0.9)) drop-shadow(0 0 18px rgba(255,255,255,0.4)); }
+.qz-o.sel .qz-i { transform: scale(1.08); filter: drop-shadow(0 0 6px #fff) drop-shadow(0 0 16px rgba(232,0,29,0.8)); }
+.qz-o b { text-shadow: 0 0 10px rgba(232,0,29,0.6); }
 .qz-o span { font-size: 15px; font-weight: 500; line-height: 1.3; }
 .qz-o b { font-size: 14px; color: #E8001D; min-width: 40px; letter-spacing: -.02em; }
 @media (hover: hover) { .qz-o:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.09); transform: translateY(-2px); } }
@@ -1473,7 +1481,8 @@
 @media (max-width: 600px) {
     .qz { padding: 20px 16px 24px; border-radius: 22px; }
     .qz-opts { gap: 8px; }
-    .qz-o { flex-direction: column; text-align: center; gap: 6px; padding: 14px 8px; font-size: 22px; }
+    .qz-o { flex-direction: column; text-align: center; gap: 8px; padding: 16px 8px; font-size: 22px; }
+    .qz-i { width: 26px; height: 26px; }
     .qz-o span { font-size: 13.5px; }
     .qz-o b { min-width: 0; }
     .qz-wide { flex-direction: row; }
@@ -2069,12 +2078,12 @@ footer {
                 <h3 class="qz-q">¿Qué quieres crear?</h3>
                 <p class="qz-sub">Toca una opción · toma 30 segundos</p>
                 <div class="qz-opts">
-                    <button type="button" class="qz-o" data-e="Un spot. Nos encanta 🎬">🎬<span>Spot publicitario</span></button>
-                    <button type="button" class="qz-o" data-e="Cobertura de evento. Ahí nos movemos 🎤">🎤<span>Cobertura de evento</span></button>
-                    <button type="button" class="qz-o" data-e="Videoclip. A darle cine 🎥">🎥<span>Videoclip / filmmaking</span></button>
-                    <button type="button" class="qz-o" data-e="Contenido para redes. Vamos a hacer ruido 📱">📱<span>Contenido para redes</span></button>
-                    <button type="button" class="qz-o" data-e="Diseño y motion. Lo hacemos brillar ✨">✨<span>Diseño / motion graphics</span></button>
-                    <button type="button" class="qz-o" data-e="Web o app. También es lo nuestro 💻">💻<span>Página web / app</span></button>
+                    <button type="button" class="qz-o" data-e="Un spot. Nos encanta."><svg class="qz-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M4 11 3.4 7.2a1 1 0 0 1 .8-1.1l13.6-2.4a1 1 0 0 1 1.2.8L19.6 7 4 11"/><path d="m8.5 5.3 2.6 3.3M13.5 4.4l2.6 3.3"/></svg><span>Spot publicitario</span></button>
+                    <button type="button" class="qz-o" data-e="Cobertura de evento. Ahí nos movemos."><svg class="qz-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6"/></svg><span>Cobertura de evento</span></button>
+                    <button type="button" class="qz-o" data-e="Videoclip. A darle cine."><svg class="qz-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6.5" width="13" height="11" rx="2"/><path d="m16 10.5 5-3v9l-5-3"/></svg><span>Videoclip / filmmaking</span></button>
+                    <button type="button" class="qz-o" data-e="Contenido para redes. Vamos a hacer ruido."><svg class="qz-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg><span>Contenido para redes</span></button>
+                    <button type="button" class="qz-o" data-e="Diseño y motion. Lo hacemos brillar."><svg class="qz-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 11.6 8a2 2 0 0 0 1.3 1.3l4.5 1.6-4.5 1.6a2 2 0 0 0-1.3 1.3L10 18.3l-1.6-4.5a2 2 0 0 0-1.3-1.3L2.6 10.9l4.5-1.6A2 2 0 0 0 8.4 8z"/><path d="M18.5 3v4M16.5 5h4M19 16v3M17.5 17.5h3"/></svg><span>Diseño / motion graphics</span></button>
+                    <button type="button" class="qz-o" data-e="Web o app. También es lo nuestro."><svg class="qz-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M10 8.5 8 10.5l2 2M14 8.5l2 2-2 2"/></svg><span>Página web / app</span></button>
                 </div>
             </div>
 
@@ -2083,10 +2092,10 @@ footer {
                 <p class="qz-echo"></p>
                 <h3 class="qz-q">¿Para cuándo lo necesitas?</h3>
                 <div class="qz-opts">
-                    <button type="button" class="qz-o">⚡<span>Lo antes posible</span></button>
-                    <button type="button" class="qz-o">📅<span>Este mes</span></button>
-                    <button type="button" class="qz-o">🗓️<span>En 1 a 3 meses</span></button>
-                    <button type="button" class="qz-o">👀<span>Solo estoy explorando</span></button>
+                    <button type="button" class="qz-o"><svg class="qz-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2.5 4.5 13.5H12l-1 8 8.5-11H12z"/></svg><span>Lo antes posible</span></button>
+                    <button type="button" class="qz-o"><svg class="qz-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/><circle cx="12" cy="15" r="1.2"/></svg><span>Este mes</span></button>
+                    <button type="button" class="qz-o"><svg class="qz-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4M7.5 14h3M13.5 14h3M7.5 17.5h3"/></svg><span>En 1 a 3 meses</span></button>
+                    <button type="button" class="qz-o"><svg class="qz-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg><span>Solo estoy explorando</span></button>
                 </div>
             </div>
 
@@ -2099,13 +2108,13 @@ footer {
                     <button type="button" class="qz-o"><b>$$</b><span>$300 – $1.000</span></button>
                     <button type="button" class="qz-o"><b>$$$</b><span>$1.000 – $3.000</span></button>
                     <button type="button" class="qz-o"><b>$$$$</b><span>Más de $3.000</span></button>
-                    <button type="button" class="qz-o qz-wide">🤝<span>No sé aún, asesórenme</span></button>
+                    <button type="button" class="qz-o qz-wide"><svg class="qz-i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 11.5a8 8 0 0 1-11.7 7.1L3.5 20l1.4-5.1A8 8 0 1 1 20.5 11.5z"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.3 2.4c-.5.2-.8.6-.8 1.1v.5M12 16.2v.1"/></svg><span>No sé aún, asesórenme</span></button>
                 </div>
             </div>
 
             <!-- 4. Contacto -->
             <form class="qz-step" data-k="Contacto" novalidate>
-                <p class="qz-echo">Último paso 🙌</p>
+                <p class="qz-echo">Último paso</p>
                 <h3 class="qz-q">¿A dónde te enviamos la propuesta?</h3>
                 <div class="qz-fields">
                     <input class="qz-in" name="nombre" type="text" placeholder="Tu nombre" autocomplete="given-name" required>
@@ -2133,7 +2142,7 @@ footer {
                     Recibir mi propuesta
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </button>
-                <p class="qz-trust">🔒 Te escribimos por WhatsApp en menos de 24 h. Sin spam.</p>
+                <p class="qz-trust">Te escribimos por WhatsApp en menos de 24 h. Sin spam.</p>
             </form>
 
             <!-- Listo -->
@@ -2596,7 +2605,7 @@ document.querySelectorAll('.btn-liquid').forEach(btn => {
     if (num.length < 7) return bad(form.whatsapp, 'Revisa tu número de WhatsApp.');
     var tel = form.pais.value ? '+' + form.pais.value + ' ' + form.whatsapp.value.trim().replace(/^0+/, '') : form.whatsapp.value.trim();
     var data = {
-      _subject: '🎬 Nuevo proyecto: ' + name + ' — ' + answers.Servicio,
+      _subject: 'Nuevo proyecto: ' + name + ' — ' + answers.Servicio,
       _template: 'table', _captcha: 'false', _honey: form._honey.value,
       Nombre: name, WhatsApp: tel,
       'Abrir chat': 'https://wa.me/' + (form.pais.value || '') + num.replace(/^0+/, ''),
